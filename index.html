@@ -52,7 +52,6 @@
     gap:10px;
   }
   .eyebrow::before{ content:""; width:22px; height:1px; background:var(--gold); display:inline-block; }
-
   /* NAV */
   nav{
     position:sticky; top:0; z-index:50;
@@ -76,11 +75,23 @@
   @media (max-width:820px){
     nav ul.desktop{ display:none; }
   }
-
   /* HERO */
   .hero{ padding-top:72px; border-bottom:1px solid var(--line); }
   .hero-grid{
     display:grid; grid-template-columns: 1.35fr 1fr; gap:64px; align-items:start;
+  }
+  .hero-intro-row{
+    display:flex; align-items:center; gap:36px;
+  }
+  .hero-intro-text{ min-width:0; flex:1; }
+  .profile-pic{
+    flex:0 0 auto; align-self:center; width:170px; height:210px; border-radius:6px; overflow:hidden;
+    border:1px solid var(--line); box-shadow:0 10px 22px -16px rgba(28,35,51,.45);
+  }
+  .profile-pic img{ width:100%; height:100%; object-fit:cover; }
+  @media (max-width:700px){
+    .hero-intro-row{ flex-direction:column; align-items:flex-start; gap:24px; }
+    .profile-pic{ width:130px; height:160px; align-self:flex-start; }
   }
   .hero h1{
     font-size:clamp(38px,5.4vw,64px);
@@ -101,7 +112,6 @@
   .btn-primary:hover{ background:var(--gold); }
   .btn-ghost{ border:1px solid var(--ink); color:var(--ink); }
   .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
-
   /* LEDGER */
   .ledger{
     background:var(--ink); color:var(--paper);
@@ -122,11 +132,9 @@
   .ledger-row .label{ color:rgba(244,245,246,.72); }
   @keyframes ledgerIn{ to{ opacity:1; transform:translateY(0); } }
   @media (prefers-reduced-motion: reduce){ .ledger-row{ animation:none; opacity:1; transform:none; } }
-
   @media (max-width:900px){
     .hero-grid{ grid-template-columns:1fr; }
   }
-
   /* NARRATIVE / BRIDGE */
   .bridge{ display:grid; grid-template-columns: 1fr auto 1fr; gap:36px; align-items:stretch; margin-top:44px; }
   .bridge-col{
@@ -146,12 +154,10 @@
     font-family:'IBM Plex Mono',monospace; font-size:12px; border:1px solid var(--line);
     padding:7px 12px; border-radius:20px; background:var(--paper); color:var(--ink);
   }
-
   /* SECTION HEADERS */
   .sec-head{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:36px; flex-wrap:wrap; }
   .sec-head h2{ font-size:clamp(26px,3.4vw,38px); }
   .sec-head p{ color:var(--mute); max-width:44ch; margin:0; font-size:15px; }
-
   /* VIDEO */
   .video-frame{
     position:relative; width:100%; aspect-ratio:16/9; background:var(--ink);
@@ -167,7 +173,6 @@
     width:56px; height:56px; border:1px solid rgba(244,245,246,.4); border-radius:50%;
     display:flex; align-items:center; justify-content:center; margin-bottom:6px;
   }
-
   /* RESUME */
   .resume-panel{
     display:grid; grid-template-columns: 1fr 1fr; gap:44px; align-items:center;
@@ -177,7 +182,6 @@
     border:1px solid var(--line); border-radius:6px; overflow:hidden; box-shadow:0 18px 40px -22px rgba(28,35,51,.4);
   }
   @media (max-width:820px){ .resume-panel{ grid-template-columns:1fr; } }
-
   /* PROJECTS */
   .project-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:24px; }
   @media (max-width:820px){ .project-grid{ grid-template-columns:1fr; } }
@@ -195,7 +199,6 @@
   .tag{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--mute); border:1px solid var(--line); padding:4px 9px; border-radius:14px; }
   .role-line{ font-size:13px; color:var(--mute); }
   .role-line b{ color:var(--ink); }
-
   /* COMMERCIAL AWARENESS */
   .insight-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px; }
   @media (max-width:900px){ .insight-grid{ grid-template-columns:1fr; } }
@@ -211,7 +214,6 @@
   }
   .tie-back .mono{ color:var(--gold-bright); font-size:12px; letter-spacing:.06em; }
   .tie-back p{ margin:8px 0 0 0; max-width:62ch; color:rgba(244,245,246,.85); font-size:15.5px; }
-
   /* FOOTER */
   footer{ padding:60px 0 40px; }
   footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; }
@@ -219,13 +221,11 @@
   .foot-links{ display:flex; gap:22px; list-style:none; padding:0; margin:0; }
   .foot-links a{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-decoration:none; color:var(--ink); }
   .foot-links a:hover{ color:var(--gold); }
-
   ::selection{ background:var(--gold); color:var(--paper); }
   a:focus-visible, button:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
 </style>
 </head>
 <body>
-
 <nav>
   <div class="wrap">
     <div class="brand">A<span>.</span>HERNANDEZ</div>
@@ -239,17 +239,22 @@
     <a class="cta" href="Hernandez_Angelo_Resume.pdf" target="_blank" rel="noopener">Download Resume ↓</a>
   </div>
 </nav>
-
 <header class="hero">
   <div class="wrap">
     <div class="hero-grid">
-      <div>
-        <div class="eyebrow">Ops to Analytics</div>
-        <h1>Using Data <em>to Solve</em> problems and Aid<em>board-level</em> decisions.</h1>
-        <p class="lede">MSBA at Wake Forest, coming off a continuous-improvement internship at Mohawk Industries where I automated the reporting that plant leadership relied on daily. I'm now mapping that same discipline — clean data, tested models, a clear recommendation — onto business analytics roles across industries beyond manufacturing.</p>
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="#projects">See the work →</a>
-          <a class="btn btn-ghost" href="#intro">Watch my intro</a>
+      <div class="hero-intro-row">
+        <div class="hero-intro-text">
+          <div class="eyebrow">Ops to Analytics</div>
+          <h1>Using Data <em>to Solve</em> problems and Aid<em>board-level</em> decisions.</h1>
+          <p class="lede">MSBA at Wake Forest, coming off a continuous-improvement internship at Mohawk Industries where I automated the reporting that plant leadership relied on daily. I'm now mapping that same discipline — clean data, tested models, a clear recommendation — onto business analytics roles across industries beyond manufacturing.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#projects">See the work →</a>
+            <a class="btn btn-ghost" href="#intro">Watch my intro</a>
+          </div>
+        </div>
+        <div class="profile-pic">
+          <!-- Replace profile.jpg below with your own headshot filename once uploaded to the repo -->
+          <img src="profile.jpg" alt="Portrait of Angelo Hernandez">
         </div>
       </div>
       <div class="ledger">
@@ -263,13 +268,11 @@
     </div>
   </div>
 </header>
-
 <section id="narrative">
   <div class="wrap">
     <div class="eyebrow">Track Alignment</div>
     <h2 style="max-width:20ch;">Bridging what I've built with where I'm headed</h2>
     <p style="color:var(--mute); max-width:64ch; margin-top:14px;">My path so far has been rooted in manufacturing operations — but the underlying skill set was never industry-specific. Here's how the two connect.</p>
-
     <div class="bridge">
       <div class="bridge-col from">
         <h3>From — Operations &amp; Manufacturing</h3>
@@ -291,7 +294,6 @@
         </ul>
       </div>
     </div>
-
     <div class="skill-map">
       <span class="skill-chip">Process automation → Workflow analytics</span>
       <span class="skill-chip">Plant KPI dashboards → Business intelligence</span>
@@ -300,7 +302,6 @@
     </div>
   </div>
 </section>
-
 <section id="intro">
   <div class="wrap">
     <div class="sec-head">
@@ -310,7 +311,6 @@
       </div>
       <p>Who I am, what I've built, and the kind of analytics team I'm looking to join.</p>
     </div>
-
     <div class="video-frame" id="video-frame">
       <!--
         TO ADD YOUR VIDEO: replace the placeholder div below with an iframe, e.g.
@@ -325,7 +325,6 @@
     </div>
   </div>
 </section>
-
 <section id="resume">
   <div class="wrap">
     <div class="sec-head">
@@ -335,7 +334,6 @@
       </div>
       <p>Updated for my MSBA year — full detail on experience, projects, and technical skills.</p>
     </div>
-
     <div class="resume-panel">
       <div>
         <h3 style="font-size:22px; margin-bottom:14px;">Data Analyst · Data Scientist</h3>
@@ -350,7 +348,6 @@
     </div>
   </div>
 </section>
-
 <section id="projects">
   <div class="wrap">
     <div class="sec-head">
@@ -360,9 +357,7 @@
       </div>
       <p>Applied work spanning operations, machine learning, and applied econometrics.</p>
     </div>
-
     <div class="project-grid">
-
       <div class="card">
         <div class="stat-line">−75% manual input · ≈100% tag accuracy</div>
         <h3>Excel-to-System Automation</h3>
@@ -371,7 +366,6 @@
         <p><b>Outcome:</b> Cut manual input by over 75% and pushed accuracy to near-100%, directly improving how fast the plant could act on production alarms.</p>
         <div class="tag-row"><span class="tag">VBA</span><span class="tag">Excel</span><span class="tag">Process automation</span></div>
       </div>
-
       <div class="card">
         <div class="stat-line">68.8% cross-validation accuracy</div>
         <h3>Red Wine Quality Prediction</h3>
@@ -380,7 +374,6 @@
         <p><b>Outcome:</b> Random Forest led after GridSearchCV tuning, at 68.8% cross-validation accuracy — a working demonstration of model selection under real noise.</p>
         <div class="tag-row"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Classification</span></div>
       </div>
-
       <div class="card">
         <div class="stat-line">−0.70 pts unemployment, p &lt; 0.01</div>
         <h3>Cannabis Legalization &amp; Unemployment</h3>
@@ -389,7 +382,6 @@
         <p><b>Outcome:</b> Found a statistically significant 0.70-point reduction versus control states, confirmed with an event-study robustness check — a policy-relevant causal result, not just correlation.</p>
         <div class="tag-row"><span class="tag">R</span><span class="tag">Causal inference</span><span class="tag">Policy analysis</span></div>
       </div>
-
       <div class="card">
         <div class="stat-line">9.7% → 0% gap, by degree level</div>
         <h3>Hispanic Earnings Gap in STEM</h3>
@@ -398,11 +390,9 @@
         <p><b>Outcome:</b> Found a 9.7% baseline earnings gap that narrows to ~3% at the Master's level and disappears at the PhD/professional level — while advanced degrees raised earnings 14–79% overall.</p>
         <div class="tag-row"><span class="tag">Stata</span><span class="tag">OLS</span><span class="tag">Labor economics</span></div>
       </div>
-
     </div>
   </div>
 </section>
-
 <section id="awareness">
   <div class="wrap">
     <div class="sec-head">
@@ -412,7 +402,6 @@
       </div>
       <p>What I'm watching as I move from a single industry into cross-industry analytics roles.</p>
     </div>
-
     <div class="insight-grid">
       <div class="insight">
         <span class="num">01 / MARKET</span>
@@ -430,7 +419,6 @@
         <p>Manufacturing, finance, healthcare, and retail are all investing in analytics teams for the same reason: decisions are getting more data-dependent everywhere, not just in tech. The modeling and technical skills learned in the classroom, and automation skills I built on a factory floor transfer directly.</p>
       </div>
     </div>
-
     <div class="tie-back">
       <div style="flex:1; min-width:240px;">
         <div class="mono">MY TAKE</div>
@@ -439,7 +427,6 @@
     </div>
   </div>
 </section>
-
 <footer>
   <div class="wrap">
     <div class="mono">© 2026 Angelo Hernandez · Portfolio </div>
@@ -451,6 +438,5 @@
     </ul>
   </div>
 </footer>
-
 </body>
 </html>
